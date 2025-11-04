@@ -24,7 +24,7 @@ public class KhStack<T>
 
     private T[] _growInteralCollection()
     {
-        var counter = Enumerable.Range(0, _position);
+        var counter = Enumerable.Range(0, _position + 1);
 
         T[] newArray = [.. counter.Select(index => index < _position && _internalCollection[index] is not null ? _internalCollection[index] : default!)];
 
