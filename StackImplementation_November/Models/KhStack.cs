@@ -1,8 +1,9 @@
 using System;
+using StackImplementation_November.Interfaces;
 
 namespace StackImplementation_November.Models;
 
-public class KhStack<T>
+public class KhStack<T> : IKhStack<T>
 {
     private T[] _internalCollection = [];
 

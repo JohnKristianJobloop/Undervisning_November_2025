@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using StackImplementation_November.Models;
+using StackImplementation_November.Services;
 
 Console.WriteLine("Hello, World!");
 
@@ -23,3 +24,5 @@ var foundString = stringStack.Pop();
 Console.WriteLine(foundString);
 
 Console.WriteLine(foundString.GetType());
+
+var service = new KhStackService<string>(stringStack);
