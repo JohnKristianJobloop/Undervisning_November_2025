@@ -8,6 +8,15 @@ Console.WriteLine("Hello, World!");
 var integerStack = new KhStack<int>();
 
 integerStack.Push(10);
+integerStack.Push(4);
+integerStack.Push(32);
+
+var minimum = integerStack.Min();
+Console.WriteLine(minimum);
+
+var multipliedStackNumbers = integerStack.Select(number => number * 2);
+
+foreach (var number in multipliedStackNumbers) Console.WriteLine(number);
 
 var found = integerStack.Pop();
 
