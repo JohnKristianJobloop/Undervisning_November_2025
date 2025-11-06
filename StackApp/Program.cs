@@ -7,6 +7,8 @@ Console.WriteLine("Hello, World!");
 
 var integerStack = new KhStack<int>();
 
+var listOfNumbers = new List<int>();
+
 integerStack.Push(10);
 integerStack.Push(4);
 integerStack.Push(32);
@@ -28,6 +30,14 @@ var stringStack = new KhStack<string>();
 
 stringStack.Push("Hallais!");
 
+stringStack.Push("Mornings!");
+
+stringStack.Push("Hallaien!");
+
+stringStack.Push("God Morgen.");
+
+var bergenskHilsen = stringStack.FirstOrDefault(hilsen => string.Equals(hilsen, "hallaien!", StringComparison.OrdinalIgnoreCase));
+
 var foundString = stringStack.Pop();
 
 Console.WriteLine(foundString);
@@ -35,3 +45,10 @@ Console.WriteLine(foundString);
 Console.WriteLine(foundString.GetType());
 
 var service = new KhStackService<string>(stringStack);
+
+var catStack = new KhStack<Cat>();
+
+catStack.Push(new Cat("Zeus", "Norsk Skogskatt", 10));
+
+
+record Cat(string Name, string Breed, int Age);

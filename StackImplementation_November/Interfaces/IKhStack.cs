@@ -2,9 +2,6 @@ using System;
 
 namespace StackImplementation_November.Interfaces;
 
-public interface IKhStack<T>
+public interface IKhStack<T> : IPushable<T>, IPoppable<T>, IEnumerable<T>
 {
-    void Push(T obj);
-
-    T Pop();
 }

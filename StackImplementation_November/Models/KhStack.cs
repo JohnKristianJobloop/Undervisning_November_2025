@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using StackImplementation_November.Interfaces;
 
 namespace StackImplementation_November.Models;
@@ -30,5 +31,18 @@ public class KhStack<T> : IKhStack<T>
         T[] newArray = [.. counter.Select(index => index < _position && _internalCollection[index] is not null ? _internalCollection[index] : default!)];
 
         return newArray;
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        for (var iterator = 0; iterator < _position; iterator++)
+        {
+            yield return _internalCollection[iterator];
+        }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }
