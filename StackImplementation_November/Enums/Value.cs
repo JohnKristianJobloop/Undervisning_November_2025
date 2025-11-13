@@ -2,7 +2,7 @@ namespace StackImplementation_November.Enums;
 
 public enum Value
 {
-    Joker,
+    Joker = 1,
     Two,
     Three,
     Four,
