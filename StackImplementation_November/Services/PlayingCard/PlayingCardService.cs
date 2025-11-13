@@ -19,7 +19,38 @@ public class PlayingCardService<T> where T : Card
         }
     }
 
+    public void SortDeck()
+    {
+        var sortedDeck = _deck.OrderBy(card => Random.Shared.Next()).ToList();
+        _deck = [];
+        foreach (var card in sortedDeck)
+        {
+            _deck.Push(card);   
+        }
+    }
+
+    public void SortDeck(Func<T, int> sortFunction)
+    {
+        var sortedDeck = _deck.OrderBy(card => sortFunction).ToList();
+        _deck = [];
+        foreach (var card in sortedDeck)
+        {
+            _deck.Push(card);
+        }
+    }
+
+    public void ShuffleCardBackIntoDeck(T card)
+    {
+        _deck.Push(card);
+        SortDeck();
+    }
+
     public PlayingCardService(bool includeJoker = false)
+    {
+        ResetDeck(includeJoker);
+    }
+
+    public void ResetDeck(bool includeJoker = false)
     {
         var deck = new List<T>();
 
@@ -40,7 +71,6 @@ public class PlayingCardService<T> where T : Card
         {
             _deck.Push(card);
         } 
-        
     }
     private Color GetColorForPlayingCard(Suits suit)
     {
