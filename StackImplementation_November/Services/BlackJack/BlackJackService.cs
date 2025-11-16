@@ -2,12 +2,18 @@ using System;
 using System.IO.Compression;
 using StackImplementation_November.Interfaces.BlackJack;
 using StackImplementation_November.Models.BlackJack;
+using StackImplementation_November.Models.PlayingCard;
+using StackImplementation_November.Services.PlayingCard;
 
 namespace StackImplementation_November.Services.BlackJack;
 
 public class BlackJackService : IBlackJackService
 {
     private List<Player> _players = [];
+
+    private PlayingCardService<Card> _playingCards = new();
+
+    private int _currentPlayer = 0;
 
     public int PlayerCount => _players.Count;
 
