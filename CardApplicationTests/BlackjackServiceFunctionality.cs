@@ -51,6 +51,25 @@ public class BlackjackServiceFunctionality
         Assert.Throws<ArgumentException>(blackJackService.RunGame);
     }
 
+    [Fact]
+    public void ThrowsWhenAddingMoreThanFivePlayers()
+    {
+        IBlackJackService blackJackService = new BlackJackService();
+
+        List<Player> players = [
+            new ("John"),
+            new ("David"),
+            new ("James"),
+            new ("Linda")
+        ];
+
+        foreach (var player in players) blackJackService.AddPlayer(player);
+
+        Assert.Throws<ArgumentException>(()=>blackJackService.AddPlayer(new("Theodore")));
+    }
+
+    
+
     
 
 }
