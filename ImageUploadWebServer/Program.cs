@@ -5,7 +5,7 @@ HttpListener listener = new();
 
 var indexFilePath = "./wwwroot/index.html";
 
-listener.Prefixes.Add("http://localhost:3002/");
+listener.Prefixes.Add("http://+:3002/");
 
 listener.Start();
 
@@ -24,6 +24,10 @@ while(true)
     {
         var request = context.Request;
         var response = context.Response;
+        response.AddHeader("Access-Control-Allow-Origin", "https://13c58d493d91.ngrok-free.app"); // Allow requests from any origin
+        response.AddHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"); // Allow common HTTP methods
+        response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept, Authorization"); // Allow common headers
+
 
         switch(request.HttpMethod)
         {
