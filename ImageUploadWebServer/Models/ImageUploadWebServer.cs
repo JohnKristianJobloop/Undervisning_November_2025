@@ -55,7 +55,7 @@ public class ImageService : IImageUploadWebServer
         }
 
         var data = await File.ReadAllBytesAsync(fileName);
-        var ext = fileName.Split(".")[2];
+        var ext = fileName.Split(".").Last();
         var mimeType = ValidImageMimeTypes.Where(pair => pair.Value == $".{ext}").Select(pair => pair.Key).FirstOrDefault();
         if (mimeType is null)
         {

@@ -3,6 +3,8 @@ using ImageUploadWebServer.Models;
 
 HttpListener listener = new();
 
+var indexFilePath = "./wwwroot/index.html";
+
 listener.Prefixes.Add("http://localhost:3002/");
 
 listener.Start();
@@ -22,10 +24,6 @@ while(true)
     {
         var request = context.Request;
         var response = context.Response;
-        response.AddHeader("Access-Control-Allow-Origin", "*"); // Allow requests from any origin
-        response.AddHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"); // Allow common HTTP methods
-        response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept, Authorization"); // Allow common headers
-
 
         switch(request.HttpMethod)
         {
@@ -35,7 +33,15 @@ while(true)
                 context.Response.OutputStream.Close();
                 break;
             case "GET":
-                if (request.RawUrl == "/wwwroot/Images/all")
+                if (request.RawUrl == "/")
+                {
+                    var data = await File.ReadAllBytesAsync(indexFilePath);
+                    context.Response.StatusCode = 200;
+                    context.Response.ContentType = "text/html";
+                    await context.Response.OutputStream.WriteAsync(data);
+
+                }
+                else if(request.RawUrl == "/wwwroot/Images/all")
                 {
                     await uploadServer.FetchAllImageUrls(context);
                 }

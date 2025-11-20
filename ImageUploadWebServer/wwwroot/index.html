@@ -29,7 +29,8 @@
     async function uploadImage() {
         const fileInput = document.getElementById("fileInput");
         const file = fileInput.files[0];
-        const extention = file.name.split(".")[1];
+        const extention = file.name.split(".").pop();
+        console.log(extention);
         const mimeTypeLookUp = {
             png: "image/png",
             bmp: "image/bmp",
@@ -50,7 +51,7 @@
         const arrayBuffer = await file.arrayBuffer();
         const bytes = new Uint8Array(arrayBuffer);
 
-        const result = await fetch("http://localhost:3002/wwwroot/Images", {
+        const result = await fetch("wwwroot/Images", {
             method: "POST",
             headers: { "Content-Type": mimeTypeLookUp[extention] },
             body: bytes
@@ -66,7 +67,7 @@
         const list = document.getElementById("imageList");
         list.innerHTML = "";
 
-        const images = await fetch("http://localhost:3002/wwwroot/Images/all")
+        const images = await fetch("wwwroot/Images/all")
             .then(r => r.json());
 
         images.forEach(name => {
@@ -82,7 +83,7 @@
 
     function showImage(name) {
         const img = document.getElementById("preview");
-        img.src = "http://localhost:3002/wwwroot/Images/" + name;
+        img.src = "wwwroot/Images/" + name;
         img.style.display = "block";
     }
 </script>
