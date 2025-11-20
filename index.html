@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Image Upload</title>
+</head>
+<body>
+
+<h2>Upload Image</h2>
+
+<input type="file" id="fileInput" accept="image/*">
+<button onclick="uploadImage()">Upload</button>
+
+<p id="uploadResult"></p>
+
+<hr>
+
+<h2>Images in wwwroot</h2>
+<button onclick="loadImages()">Refresh List</button>
+
+<ul id="imageList"></ul>
+
+<hr>
+
+<h2>Selected Image</h2>
+<img id="preview" src="" alt="" style="max-width:400px; display:none;">
+
+<script>
+    async function uploadImage() {
+        const fileInput = document.getElementById("fileInput");
+        const file = fileInput.files[0];
+        const extention = file.name.split(".")[1];
+        const mimeTypeLookUp = {
+            png: "image/png",
+            bmp: "image/bmp",
+            avif: "image/avif",
+            apng: "image/apng",
+            svg: "image/svg+xml",
+            tiff: "image/tiff",
+            webp: "image/webp",
+            jpg: "image/jpeg",
+            gif: "image/gif"
+        }
+
+        if (!file) {
+            alert("Please select a file first.");
+            return;
+        }
+
+        const arrayBuffer = await file.arrayBuffer();
+        const bytes = new Uint8Array(arrayBuffer);
+
+        const result = await fetch("http://localhost:3002/wwwroot/Images", {
+            method: "POST",
+            headers: { "Content-Type": mimeTypeLookUp[extention] },
+            body: bytes
+        }).then(r => r.json());
+
+        document.getElementById("uploadResult").innerText =
+            "Uploaded: " + result.file;
+
+        loadImages();
+    }
+
+    async function loadImages() {
+        const list = document.getElementById("imageList");
+        list.innerHTML = "";
+
+        const images = await fetch("http://localhost:3002/wwwroot/Images/all")
+            .then(r => r.json());
+
+        images.forEach(name => {
+            const li = document.createElement("li");
+            const link = document.createElement("a");
+            link.href = "#";
+            link.innerText = name;
+            link.onclick = () => showImage(name);
+            li.appendChild(link);
+            list.appendChild(li);
+        });
+    }
+
+    function showImage(name) {
+        const img = document.getElementById("preview");
+        img.src = "http://localhost:3002/wwwroot/Images/" + name;
+        img.style.display = "block";
+    }
+</script>
+
+</body>
+</html>

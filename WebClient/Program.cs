@@ -9,8 +9,8 @@ Console.WriteLine(contentLength);
 var contentType = response.Content.Headers.ContentType;
 Console.WriteLine(contentType);
 
-
-using var fileStream = File.Create("nrk.html");
+var wwwrootDirectory = "./wwwroot";
+using var fileStream = File.Create(wwwrootDirectory + "/nrk.html");
 await response.Content.CopyToAsync(fileStream);
 
 var response2 = await client.GetAsync("Https://www.nrk.no");

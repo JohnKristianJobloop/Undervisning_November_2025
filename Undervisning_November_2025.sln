@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient", "WebClient\WebC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServerExamples", "WebServerExamples\WebServerExamples.csproj", "{D8312CCF-F58C-4A48-88DC-D288586C3299}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageUploadWebServer", "ImageUploadWebServer\ImageUploadWebServer.csproj", "{65E44B0D-CC01-40C7-BF4B-199059A5545C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,18 @@ Global
 		{D8312CCF-F58C-4A48-88DC-D288586C3299}.Release|x64.Build.0 = Release|Any CPU
 		{D8312CCF-F58C-4A48-88DC-D288586C3299}.Release|x86.ActiveCfg = Release|Any CPU
 		{D8312CCF-F58C-4A48-88DC-D288586C3299}.Release|x86.Build.0 = Release|Any CPU
+		{65E44B0D-CC01-40C7-BF4B-199059A5545C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65E44B0D-CC01-40C7-BF4B-199059A5545C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65E44B0D-CC01-40C7-BF4B-199059A5545C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{65E44B0D-CC01-40C7-BF4B-199059A5545C}.Debug|x64.Build.0 = Debug|Any CPU
+		{65E44B0D-CC01-40C7-BF4B-199059A5545C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{65E44B0D-CC01-40C7-BF4B-199059A5545C}.Debug|x86.Build.0 = Debug|Any CPU
+		{65E44B0D-CC01-40C7-BF4B-199059A5545C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65E44B0D-CC01-40C7-BF4B-199059A5545C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65E44B0D-CC01-40C7-BF4B-199059A5545C}.Release|x64.ActiveCfg = Release|Any CPU
+		{65E44B0D-CC01-40C7-BF4B-199059A5545C}.Release|x64.Build.0 = Release|Any CPU
+		{65E44B0D-CC01-40C7-BF4B-199059A5545C}.Release|x86.ActiveCfg = Release|Any CPU
+		{65E44B0D-CC01-40C7-BF4B-199059A5545C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
