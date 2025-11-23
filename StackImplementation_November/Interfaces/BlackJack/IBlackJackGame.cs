@@ -1,15 +1,17 @@
 using System;
 using StackImplementation_November.Models.BlackJack;
+using StackImplementation_November.Models.PlayingCard;
 
 namespace StackImplementation_November.Interfaces.BlackJack;
 
-public interface IBlackJackService
+public interface IBlackJackGame
 {
     void AddPlayer(Player player);
 
-    void RemovePlayer(Player player);
+    bool RemovePlayer(Player player);
 
-    void RunGame();
+
+    Card? Draw(int amount = 1);
 
     int PlayerCount{get;}
 }

@@ -49,6 +49,10 @@ public class PlayingCardService<T> where T : Card
     {
         ResetDeck(includeJoker);
     }
+    public PlayingCardService(KhStack<T> stack)
+    {
+        _deck = stack;
+    }
 
     public void ResetDeck(bool includeJoker = false)
     {
