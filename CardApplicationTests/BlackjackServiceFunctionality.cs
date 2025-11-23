@@ -129,6 +129,7 @@ public class BlackjackServiceFunctionality
         currentPlayer.Hit(game);
 
         Assert.Equal(15, currentPlayer.GetHandScore());
+        Assert.True(currentPlayer.IsStanding);
 
     }
     
