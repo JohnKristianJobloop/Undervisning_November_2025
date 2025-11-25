@@ -10,6 +10,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLogging(options => options.AddConsole());
 builder.Services.AddSingleton<PlayingCardService<Card>>();
+builder.Services.AddControllers();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -41,15 +44,11 @@ app.MapGet("/weatherforecast", () =>
 
 app.MapGet("/Hello", ()=>"Hello, world!");
 
-app.MapGet("/cards/{amount:int}", (int amount) =>
+/* app.MapGet("api/cards/{amount:int}", (PlayingCardService<Card> service, int amount) =>
 {
     try
     {
-        var logger = app.Services.GetService<ILogger<Program>>();
-        var service = app.Services.GetService<PlayingCardService<Card>>();
-        logger.LogInformation(service.Count.ToString());
         var list = service.Draw(amount).ToList();
-        foreach (var card in list) logger.LogInformation(card.Name);
         return Results.Ok(list);
     }
     catch (IndexOutOfRangeException ex)
@@ -58,17 +57,20 @@ app.MapGet("/cards/{amount:int}", (int amount) =>
     }
 });
 
-app.MapGet("/cards/reset", (PlayingCardService<Card> playingCardService) =>
+app.MapGet("api/cards/reset", (PlayingCardService<Card> playingCardService) =>
 {
     playingCardService.ResetDeck();
     return Results.NoContent();
-});
+}); */
 
 app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseStaticFiles();
 app.UseDefaultFiles();
+
+app.MapControllers();
+
 
 app.Run();
 

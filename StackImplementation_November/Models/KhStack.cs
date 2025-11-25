@@ -22,7 +22,7 @@ public class KhStack<T> : IKhStack<T>
 
     /* Her skjer decrementing (--) før index access */
     public T Pop(){
-        if (_position < 0)
+        if (_position <= 0)
         {
             throw new IndexOutOfRangeException("At the end of the stack");
         }

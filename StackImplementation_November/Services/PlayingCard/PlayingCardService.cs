@@ -15,8 +15,16 @@ public class PlayingCardService<T> where T : Card
 
         while (incrementor < amount)
         {
-            yield return _deck.Pop();
-            incrementor++;
+            T card;
+            try
+            {
+                card = _deck.Pop();
+                incrementor++;
+            } catch (IndexOutOfRangeException)
+            {
+                throw;
+            }
+            yield return card;
         }
     }
 
