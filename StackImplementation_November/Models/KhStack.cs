@@ -21,7 +21,13 @@ public class KhStack<T> : IKhStack<T>
     }
 
     /* Her skjer decrementing (--) før index access */
-    public T Pop() => _internalCollection[--_position];
+    public T Pop(){
+        if (_position < 0)
+        {
+            throw new IndexOutOfRangeException("At the end of the stack");
+        }
+        return _internalCollection[--_position];
+    }
 
     private T[] _growInteralCollection()
     {

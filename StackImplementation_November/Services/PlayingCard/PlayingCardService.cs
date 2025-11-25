@@ -16,8 +16,11 @@ public class PlayingCardService<T> where T : Card
         while (incrementor < amount)
         {
             yield return _deck.Pop();
+            incrementor++;
         }
     }
+
+    public int Count => _deck.Count();
 
     public void SortDeck()
     {
@@ -43,6 +46,10 @@ public class PlayingCardService<T> where T : Card
     {
         _deck.Push(card);
         SortDeck();
+    }
+    public PlayingCardService()
+    {
+        ResetDeck(false);
     }
 
     public PlayingCardService(bool includeJoker = false)

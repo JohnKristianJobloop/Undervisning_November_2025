@@ -15,6 +15,7 @@ public class PlayingCardServiceTest
         var service = new PlayingCardService<Card>();
         //Assert
         Assert.NotNull(service);
+        Assert.Equal(52, service.Count);
     }
 
     [Fact]
@@ -34,7 +35,9 @@ public class PlayingCardServiceTest
         //Arrange
         var service = new PlayingCardService<Card>();
 
-        var firstDrawnCard = service.Draw(1).FirstOrDefault();
+        var DrawnCards = service.Draw(10).ToList();
+
+        var firstDrawnCard = DrawnCards.FirstOrDefault();
 
         //Assert
 
