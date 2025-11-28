@@ -1,3 +1,5 @@
+using BlackJackGameApi.Database.Context;
+using Microsoft.EntityFrameworkCore;
 using StackImplementation_November.Models.PlayingCard;
 using StackImplementation_November.Services.PlayingCard;
 
@@ -9,8 +11,12 @@ builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLogging(options => options.AddConsole());
-builder.Services.AddSingleton<PlayingCardService<Card>>();
+builder.Services.AddTransient<PlayingCardService<Card>>();
 builder.Services.AddControllers();
+builder.Services.AddDbContext<PlayingCardDatabaseContext>(options =>
+{
+    options.UseSqlite("Data Source=./Database/PlayingCards.db");
+});
 
 
 var app = builder.Build();

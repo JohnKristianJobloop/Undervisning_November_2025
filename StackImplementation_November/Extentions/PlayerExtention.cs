@@ -27,6 +27,20 @@ public static class PlayerExtention
         return player.CurrentHandValue;
     }
 
+    /// <summary>
+    /// Represents a player using the hit action in a game of blackjack.
+    /// <example>
+    /// <code>
+    /// var player = new Player("John");
+    /// var game = new BlackJackService();
+    /// player.hit(game);
+    /// </code>
+    /// </example>
+    /// </summary>
+    /// 
+    /// <param name="player">represents the player object this extends from</param>
+    /// <param name="service">the service which should contains and handle playing cards</param>
+    /// <returns></returns>
     public static Player Hit(this Player player, IBlackJackGame service)
     {
         if (player is Dealer dealer)
